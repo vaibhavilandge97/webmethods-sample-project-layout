@@ -34,7 +34,7 @@ pipeline {
         }
  	stage('Deploy') {
             steps {
-		bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/Deployer.bat --deploy -dc mydeployment -project ${env.SAG_PROGNAME} -host localhost -port 5555 -user ${env.SAG_USER} -pwd ${env-SAG_PSWD}"
+		bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/Deployer.bat --deploy -dc myDeployment -project ${env.SAG_PROGNAME} -host localhost -port 5555 -user ${env.SAG_USER} -pwd ${env-SAG_PSWD}"
             }
         }
     }
