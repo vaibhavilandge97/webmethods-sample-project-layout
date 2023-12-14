@@ -20,6 +20,28 @@
 
 
 
+// pipeline {
+//     agent any
+ 
+//     stages {
+//         stage('Build'){
+//             steps {
+//                 bat "${env.SAG_HOME}/common/AssetBuildEnvironment/bin/build.bat -Dbuild.source.dir=C:/ProgramData/Jenkins/.jenkins/workspace/${env.JOB_NAME}/assets/IS/Packages"
+//             }
+//         }
+//         stage('CreateProject'){
+//             steps {
+//                 bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/projectautomator.bat C:/Module3/ProjectAutomator.xml"
+//             }
+//         }
+//         stage('Deploy'){
+//             steps {
+//                 bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/Deployer.bat --deploy -dc myDeployment -project vaibhavi -host localhost -port 5555 -user Administrator -pwd manage"
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any
  
@@ -31,12 +53,12 @@ pipeline {
         }
         stage('CreateProject'){
             steps {
-                bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/projectautomator.bat C:/Module3/ProjectAutomator.xml"
+                bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/projectautomator.bat ${env.SAG_PRDIC}"
             }
         }
         stage('Deploy'){
             steps {
-                bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/Deployer.bat --deploy -dc myDeployment -project vaibhavi -host localhost -port 5555 -user Administrator -pwd manage"
+                bat "${env.SAG_HOME}/IntegrationServer/instances/default/packages/WmDeployer/bin/Deployer.bat --deploy -dc myDeployment -project ${env.SAG_PROGNAME} -host localhost -port 5555 -user ${env.SAG_USER} -pwd ${env.SAG_PSWD}"
             }
         }
     }
