@@ -27,9 +27,9 @@ pipeline {
                 bat "${env.SAG_HOME}/common/AssetBuildEnvironment/bin/build.bat -Dbuild.source.dir=C:/ProgramData/Jenkins/.jenkins/workspace/myFirstPipeline/assets/IS/Packages"
             }
         }
-        stage('Deploy') {
+        stage('CreateProject') {
             steps {
-		bat "${env.SAG_HOME}/common/lib/ant/bin/ant -DSAGHome=${env.SAG_HOME} -DSAG_CI_HOME=${env.SAG_CI_HOME} -DprojectName=${env.JOB_NAME} deploy"
+		bat "${env.SAG_HOME}/C:/SoftwareAG/IntegrationServer/instances/default/packages/WmDeployer/bin/projectautomator.bat ${env.SAG_PRDIC}"
             }
         }
  	stage('Test') {
